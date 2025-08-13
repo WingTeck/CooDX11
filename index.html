@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CooDX11 by WingTech - The Pigeon Word Counterpart</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* General Body Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #e0e0e0, #f0f0f0); /* Subtle gradient background */
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Main Container for Fixed-Width Layout */
+        .container {
+            width: 960px; /* Common fixed width in 2011 */
+            margin: 30px auto;
+            background-color: #ffffff;
+            border: 1px solid #ccc;
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); /* Soft shadow */
+            padding: 25px;
+            box-sizing: border-box; /* Include padding in width */
+        }
+
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            color: #2c3e50;
+            font-size: 2.8em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Subtle text shadow */
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Navigation Bar */
+        nav {
+            background: linear-gradient(to bottom, #4a698c, #3b506f); /* Gradient for nav bar */
+            border-radius: 8px; /* Rounded nav bar */
+            padding: 10px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex; /* Horizontal navigation */
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 8px 15px;
+            display: block;
+            border-radius: 5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        nav ul li a:hover {
+            background-color: #6a8bb1; /* Lighter hover state */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+
+        /* Main Content Area */
+        .content-section {
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 25px;
+            border: 1px solid #e5e5e5;
+        }
+
+        .content-section h2 {
+            color: #2c3e50;
+            font-size: 1.8em;
+            margin-top: 0;
+            border-bottom: 2px solid #a0b2c6; /* Underline effect */
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+        }
+
+        .features-grid, .download-options, .source-code-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .feature-item, .download-item, .source-code-item {
+            background-color: #ffffff;
+            border: 1px solid #dcdcdc;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .feature-item h3, .download-item h3, .source-code-item h3 {
+            color: #4a698c;
+            font-size: 1.4em;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .feature-item p, .download-item p, .source-code-item p {
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .download-item .download-button-small, .source-code-item .download-button-small {
+            display: inline-block;
+            background: linear-gradient(to bottom, #7cb342, #558b2f);
+            color: #ffffff;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-size: 1.1em;
+            font-weight: bold;
+            border-radius: 8px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            transition: all 0.2s ease;
+            border: 1px solid #4a6a2c;
+            cursor: pointer;
+            margin-top: 15px;
+        }
+
+        .download-item .download-button-small:hover, .source-code-item .download-button-small:hover {
+            background: linear-gradient(to bottom, #8bc34a, #689f38);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+        }
+
+        .download-item .download-button-small:active, .source-code-item .download-button-small:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        }
+
+        .code-block {
+            background-color: #e8e8e8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 15px;
+            text-align: left;
+            overflow-x: auto; /* For long lines of code */
+        }
+
+        .code-block pre {
+            margin: 0;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #333;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #4a698c;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>CooDX11</h1>
+            <p>The Pigeon Word Counterpart</p>
+            <p style="font-size:0.9em; color:#888;">&copy; 2011 WingTech Inc.</p>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#download">Download</a></li>
+                <li><a href="#source-code-download">Source Code</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+
+        <div id="home" class="content-section">
+            <h2>Welcome to CooDX11!</h2>
+            <p>In an era driven by efficiency and advanced communication, WingTech is proud to introduce **CooDX11**, the revolutionary software designed to streamline your daily tasks related to word counting and text analysis. Forget tedious manual calculations; CooDX11 brings precision and speed right to your desktop.</p>
+            <p>Developed with the discerning user in mind, CooDX11 offers a robust and intuitive platform for professionals, writers, and students alike. Its sophisticated algorithms provide instant and accurate word counts, character counts, and even sentence analyses, making it the perfect companion for anyone working with text.</p>
+            <p>Experience the next generation of productivity. CooDX11 is more than just a tool; it's your reliable word counterpart, ensuring your documents are always perfectly quantified, just like a well-trained pigeon delivering its message with utmost precision.</p>
+        </div>
+
+        <div id="features" class="content-section">
+            <h2>Key Features</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <h3>Instant Word Count</h3>
+                    <p>Get real-time word counts for any text, from a single sentence to entire documents, with lightning speed and accuracy.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Detailed Analysis</h3>
+                    <p>Beyond words, CooDX11 provides character counts, sentence counts, paragraph counts, and even readability estimates.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>User-Friendly Interface</h3>
+                    <p>Designed with a clean and intuitive layout, CooDX11 is easy to navigate, even for first-time users. Just paste and count!</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Lightweight & Fast</h3>
+                    <p>Optimized for performance, CooDX11 is a small footprint application that won't slow down your system.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Clipboard Integration</h3>
+                    <p>Seamlessly count words from text copied to your clipboard, or directly paste text into the application for analysis.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>Customizable Reports</h3>
+                    <p>Generate simple reports of your text metrics, allowing for easy record-keeping and sharing of your analysis results.</p>
+                {/* Image of a happy pigeon using a computer for context */}
+                </div>
+            </div>
+        </div>
+
+        <div id="download" class="content-section">
+            <h2>Download CooDX11</h2>
+            <p>Ready to get started with CooDX11? Choose your preferred version below. We recommend the latest stable release for the best experience.</p>
+
+            <div class="download-options">
+                <div class="download-item">
+                    <h3>Windows (Version 2.0.2)</h3>
+                    <p>Download the official installer for Windows XP, Vista, 7, and later.</p>
+                    <a href="https://github.com/WingTeck/CooDX11/releases/download/v2.0.2/setup.exe" class="download-button-small" target="_blank">Download .EXE</a>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">(InstallerForge recommended)</p>
+                </div>
+                <div class="download-item">
+                    <h3>Linux (Version 2.0.2)</h3>
+                    <p>Download the Debian package for Ubuntu, Mint, and other Debian-based systems.</p>
+                    <a href="https://github.com/WingTeck/CooDX11/releases/download/v2.0.2/coodx11_2.0.2_amd64.deb" class="download-button-small" target="_blank">Download .DEB</a>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">(Requires Python 3 &amp; Tkinter)</p>
+                </div>
+                <div class="download-item">
+                    <h3>Portable (Cross-Platform)</h3>
+                    <p>Run CooDX11 directly from the Python script. No installation required (if Python/Tkinter is present).</p>
+                    <a href="#source-code-download" class="download-button-small">Download .PY</a>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">(See instructions below)</p>
+                </div>
+            </div>
+
+            <p style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #555;">Having trouble with your download or installation? Visit our <a href="#support" style="color:#4a698c; text-decoration:none;">Support page</a> (coming soon!) or <a href="#contact" style="color:#4a698c; text-decoration:none;">Contact Us</a>.</p>
+        </div>
+
+        <div id="source-code-download" class="content-section">
+            <h2>Run CooDX11 from Source (Python Script)</h2>
+            <p>For advanced users, developers, or those who prefer to run applications without a traditional installer, you can download the CooDX11 Python source file directly.</p>
+            <p>This method requires a working Python 3 installation on your system, along with the Tkinter library, which is typically bundled with Python or easily installable.</p>
+
+            <div class="source-code-grid">
+                <div class="source-code-item">
+                    <h3>1. Download the Python File</h3>
+                    <p>Click the link below to download the latest Python source file for CooDX11.</p>
+                    <a href="https://raw.githubusercontent.com/WingTeck/CooDX11/main/CooDX11.py" class="download-button-small" target="_blank">Download CooDX11.py</a>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">(Right-click &amp; "Save Link As...")</p>
+                </div>
+                <div class="source-code-item">
+                    <h3>2. Install Python 3 &amp; Tkinter</h3>
+                    <p>If you don't already have it, install Python 3. Tkinter is usually included, but might need a separate install on some Linux systems.</p>
+                    <p style="font-size:0.85em; color:#555;"><strong>For Windows:</strong> <a href="https://www.python.org/downloads/windows/" target="_blank" style="color:#4a698c;">Download Python 3</a></p>
+                    <p style="font-size:0.85em; color:#555;"><strong>For Linux (Ubuntu/Debian):</strong> Open terminal and run:</p>
+                    <div class="code-block"><pre>sudo apt update</pre><pre>sudo apt install python3 python3-tk</pre></div>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">(Adjust for other Linux distros)</p>
+                </div>
+                <div class="source-code-item">
+                    <h3>3. Run CooDX11.py</h3>
+                    <p>Navigate to the downloaded <code>CooDX11.py</code> file in your terminal or command prompt and execute it.</p>
+                    <p style="font-size:0.85em; color:#555;"><strong>In your terminal/cmd:</strong></p>
+                    <div class="code-block"><pre>cd /path/to/downloaded/file</pre><pre>python3 CooDX11.py</pre></div>
+                    <p style="font-size:0.85em; color:#777; margin-top:10px;">CooDX11 should now launch!</p>
+                </div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-size: 0.9em; color: #555;">For full project source code and development details, visit our <a href="https://github.com/WingTech/CooDX11" target="_blank" style="color:#4a698c; text-decoration:none;">GitHub Repository</a>.</p>
+        </div>
+
+        <div id="about" class="content-section">
+            <h2>About WingTech Inc.</h2>
+            <p>WingTech Inc. began its journey in **2007**, not in a Silicon Valley garage, but amidst the rustling leaves of a park, where a remarkable group of pigeons discovered an unusual aptitude for binary code and algorithms. These visionary feathered friends, driven by a profound desire to elevate the lives of **pigeonkind and birdkind** through technology, founded WingTech.</p>
+            <p>Their initial chirps and coos translated into innovative concepts, leading to the development of pioneering software that understood the unique needs of avian communication and organization. CooDX11 is a direct descendant of that original, ambitious spirit, bringing sophisticated text analysis to two-legged and feathered users alike.</p>
+            <p>Our team, now a collaborative blend of human and avian intellect, continues to be inspired by those pioneering pigeons. We are dedicated to creating robust, user-friendly applications that stand the test of time, always with an eye towards efficient solutions for every species.</p>
+        </div>
+
+        <div id="contact" class="content-section">
+            <h2>Contact Us</h2>
+            <p>Have questions about CooDX11, or want to get in touch with WingTech Inc.? We'd love to hear from you!</p>
+            <p><strong>General Inquiries:</strong> info@wingtech.kocovic.in.rs</p>
+            <p><strong>Support:</strong> podrska@wingtech.kocovic.in.rs</p>
+            <p style="margin-top: 20px;">We aim to respond to all inquiries within 2-3 business days.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>Copyright &copy; 2011 WingTech Inc. All rights reserved.</p>
+        <p>Proudly serving your word counting needs since the days of desktop software excellence.</p>
+        <p><a href="#top">Back to Top</a></p>
+    </footer>
+
+    <script>
+        // Custom alert function to replace native alert()
+        function alert(message) {
+            const modal = document.createElement('div');
+            modal.style.position = 'fixed';
+            modal.style.top = '50%';
+            modal.style.left = '50%';
+            modal.style.transform = 'translate(-50%, -50%)';
+            modal.style.backgroundColor = '#fff';
+            modal.style.padding = '30px';
+            modal.style.border = '1px solid #ccc';
+            modal.style.boxShadow = '0 5px 15px rgba(0,0,0,0.3)';
+            modal.style.borderRadius = '8px';
+            modal.style.zIndex = '1000';
+            modal.style.fontFamily = 'Inter, sans-serif';
+            modal.style.textAlign = 'center';
+            modal.style.maxWidth = '90%';
+
+            const messageText = document.createElement('p');
+            messageText.innerText = message;
+            messageText.style.fontSize = '1.1em';
+            messageText.style.marginBottom = '20px';
+            modal.appendChild(messageText);
+
+            const closeButton = document.createElement('button');
+            closeButton.innerText = 'OK';
+            closeButton.style.padding = '10px 25px';
+            closeButton.style.backgroundColor = '#4a698c';
+            closeButton.style.color = '#fff';
+            closeButton.style.border = 'none';
+            closeButton.style.borderRadius = '5px';
+            closeButton.style.cursor = 'pointer';
+            closeButton.style.fontSize = '1em';
+            closeButton.style.fontWeight = 'bold';
+            closeButton.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+            closeButton.onclick = () => document.body.removeChild(modal);
+            modal.appendChild(closeButton);
+
+            document.body.appendChild(modal);
+        }
+    </script>
+</body>
+</html>
